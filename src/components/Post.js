@@ -8,21 +8,24 @@ export default function Post({ post, featuredMedia }) {
     <>
       <div className='p-4 md:w-1/3'>
         <div className='h-full border-2 border-gray-800 rounded-lg overflow-hidden'>
-          {/* <Image
-            className='lg:h-48 md:h-36 w-full object-cover object-center'
-            src={featuredMedia["media_details"].sizes.medium["source_url"]}
-            alt={featuredMedia["alt_text"]}
-            width={180}
-            height={120}
-          /> */}
+          {featuredMedia != 0 && (
+            <Image
+              className='lg:h-48 md:h-36 w-full object-cover object-center'
+              src={featuredMedia["source_url"]}
+              alt={featuredMedia["alt_text"]}
+              width={720}
+              height={401}
+            />
+          )}
+
           <div className='p-6'>
             <h1 className='title-font text-lg font-medium text-white mb-3'>
               {post.title.rendered}
             </h1>
-            <p
+            <div
               className='leading-relaxed mb-3'
               dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
-            ></p>
+            ></div>
             <div className='flex items-center flex-wrap '>
               <Link
                 href={`/post/${post.slug}`}

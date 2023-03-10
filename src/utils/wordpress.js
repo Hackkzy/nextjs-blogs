@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost/wordpress/wp-json/wp/v2/posts?_embed";
+const BASE_URL = "http://nextpress.local/wp-json/wp/v2";
 
 export async function getPosts() {
   const postsRes = await fetch(BASE_URL + "/posts?_embed");

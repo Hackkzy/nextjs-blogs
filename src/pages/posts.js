@@ -4,8 +4,10 @@ import Post from "../components/Post";
 const Posts = (props) => {
   const posts = props.posts;
   const jsxPosts = posts.map((post) => {
-    // const featuredMedia = post["_embedded"]["wp:featuredmedia"][0];
-    return <Post post={post} featuredMedia={""} key={post.id} />;
+    const featuredMedia = post["_embedded"]["wp:featuredmedia"]
+      ? post["_embedded"]["wp:featuredmedia"][0]
+      : "";
+    return <Post post={post} featuredMedia={featuredMedia} key={post.id} />;
   });
 
   return (
@@ -19,12 +21,10 @@ const Posts = (props) => {
   );
 };
 
-export async function getStaticProps({ params }) {
+export default Posts;
+export async function getServerSideProps() {
   const posts = await getPosts();
   return {
     props: { posts },
-    revalidate: 10, // In seconds
   };
 }
-
-export default Posts;
